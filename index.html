@@ -1,0 +1,631 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdul Qadeer · ML Engineer</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter (professional sans) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== professional style ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    /* Light theme (default) – clean & professional */
+    :root {
+      --bg-primary: #f9fafc;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --text-primary: #1a2b3e;
+      --text-secondary: #2c3d55;
+      --text-soft: #4a5b6f;
+      --accent: #2563eb;       /* refined blue */
+      --accent-light: #3b82f6;
+      --nav-bg: rgba(255,255,255,0.85);
+      --border-light: #e2e8f0;
+      --shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.05);
+      --shadow-hover: 0 20px 30px -12px rgba(37,99,235,0.15);
+      --icon-bg: #eef2ff;
+      --theme-icon: #334155;
+      --github-bg: #f1f5f9;
+      --github-hover: #e2e8f0;
+    }
+
+    /* Dark theme – professional & easy on eyes */
+    body.dark {
+      --bg-primary: #0f172a;
+      --bg-surface: #1e293b;
+      --bg-card: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-soft: #94a3b8;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --nav-bg: rgba(30,41,59,0.85);
+      --border-light: #334155;
+      --shadow-sm: 0 15px 30px -10px rgba(0,0,0,0.4);
+      --shadow-hover: 0 25px 35px -14px #2563eb40;
+      --icon-bg: #2d3a4f;
+      --theme-icon: #cbd5e1;
+      --github-bg: #2d3a4f;
+      --github-hover: #3b4a63;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* theme toggle (professional minimal) */
+    .theme-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      background: var(--bg-surface);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      border: 1px solid var(--border-light);
+      transition: 0.2s;
+      font-size: 1.4rem;
+      color: var(--theme-icon);
+    }
+    .theme-toggle:hover {
+      transform: scale(1.05);
+      border-color: var(--accent);
+    }
+
+    /* navigation – clean sticky */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 0.9rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2.8rem;
+      flex-wrap: wrap;
+      z-index: 100;
+    }
+    .navbar a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+    .navbar a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2.8rem 2rem;
+    }
+
+    /* ===== HERO section – professional ===== */
+    .hero {
+      background: var(--bg-primary);
+    }
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+    .hero-info {
+      flex: 2 1 350px;
+    }
+    .hero-info h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+    .hero-title-tag {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero-quote {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 550px;
+      margin: 1.5rem 0 2rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 1.5rem;
+      background: var(--bg-card);
+      border-radius: 0 12px 12px 0;
+      line-height: 1.7;
+    }
+    .hero-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin: 2rem 0 1.8rem;
+    }
+    .hero-detail p {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+    .hero-detail i {
+      width: 1.6rem;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1.5px solid transparent;
+      transition: 0.2s;
+      box-shadow: 0 8px 16px -6px var(--accent);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: none;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border-light);
+      color: var(--text-secondary);
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--icon-bg);
+    }
+
+    .photo-placeholder {
+      flex: 1 1 240px;
+      background: var(--bg-surface);
+      border-radius: 24px;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+    }
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 650;
+      color: var(--text-primary);
+      margin-bottom: 2.2rem;
+      border-left: 6px solid var(--accent);
+      padding-left: 1.2rem;
+    }
+
+    /* cards – subtle, professional */
+    .exp-card, .edu-card, .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+      margin-bottom: 1.8rem;
+    }
+    .exp-card:hover, .project-card:hover {
+      border-color: var(--accent-light);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .exp-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+    .exp-header h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .date-badge {
+      background: var(--icon-bg);
+      color: var(--accent);
+      font-weight: 500;
+      padding: 0.3rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border-light);
+    }
+    .exp-sub {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      margin-bottom: 1.2rem;
+    }
+    .exp-card ul {
+      list-style: none;
+    }
+    .exp-card li {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.6rem;
+      color: var(--text-secondary);
+    }
+    .exp-card li i {
+      color: var(--accent);
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    .edu-detail {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* projects grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      padding: 1.8rem;
+    }
+    .project-icon {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .project-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .tech-tag {
+      background: var(--icon-bg);
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.75rem;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+      margin: 0.5rem 0.3rem 0.5rem 0;
+    }
+    .comming-tag {
+      background: var(--border-light);
+      color: var(--text-soft);
+      font-size: 0.75rem;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+    }
+    .github-link {
+      margin-top: 1.2rem;
+      background: var(--github-bg);
+      color: var(--text-primary);
+      padding: 0.6rem 1rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: fit-content;
+      border: 1px solid var(--border-light);
+      transition: 0.2s;
+    }
+    .github-link:hover {
+      background: var(--github-hover);
+      border-color: var(--accent);
+    }
+
+    /* contact area */
+    .contact-section {
+      background: var(--bg-card);
+      border-radius: 28px;
+      padding: 2.5rem 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1rem;
+      margin: 0.8rem 0;
+    }
+    .contact-item i {
+      color: var(--accent);
+      width: 1.8rem;
+      font-size: 1.2rem;
+    }
+    .contact-linkedin-large {
+      background: #0a66c2;
+      color: white;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: 0.2s;
+    }
+    .contact-linkedin-large:hover {
+      background: #004182;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      padding: 2rem 0 0.2rem;
+      border-top: 1px solid var(--border-light);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 750px) {
+      .hero-grid { justify-content: center; text-align: center; }
+      .hero-detail p { justify-content: center; }
+      .btn-group { justify-content: center; }
+      .navbar { gap: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- theme toggle -->
+  <div class="theme-toggle" id="themeToggle" title="dark/light mode">
+    <i class="fas fa-moon" id="themeIcon"></i>
+  </div>
+
+  <!-- navigation -->
+  <nav class="navbar">
+    <a href="#hero">Home</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-info">
+        <h1>Abdul Qadeer</h1>
+        <div class="hero-title-tag">ML Engineer</div>
+        <div class="hero-quote">
+          Machine Learning Engineer specializing in predictive modeling, AI solutions, and data-driven applications using Python and modern ML frameworks.
+        </div>
+        
+        <div class="btn-group">
+          <a href="#" class="btn-primary"><i class="fas fa-download"></i> Download Resume</a>
+          <a href="#contact" class="btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+        </div>
+      </div>
+      <div class="photo-placeholder">
+        <!-- Professional placeholder: you can replace with actual photo -->
+        <img src="abdulqadeer.png" alt="Abdul Qadeer" class="profile-photo">
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="container">
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-card">
+      <div class="exp-header">
+        <h3>Bakhtawar Bhutto Institute of I.T</h3>
+        <span class="date-badge">Jan 2026 – Present</span>
+      </div>
+      <div class="exp-sub">Lab Instructor · Kandhkot</div>
+      <ul>
+        <li><i class="fas fa-circle" style="font-size: 0.4rem; align-self: center;"></i> Conduct practical lab sessions for CIT and DIT students.</li>
+        <li><i class="fas fa-circle" style="font-size: 0.4rem; align-self: center;"></i> Guide students in software tools, programming fundamentals, IT projects.</li>
+        <li><i class="fas fa-circle" style="font-size: 0.4rem; align-self: center;"></i> Assess student performance and provide feedback.</li>
+      </ul>
+    </div>
+    <div class="exp-card">
+      <div class="exp-header">
+        <h3>Beacon Light Grammar School</h3>
+        <span class="date-badge">May 2025 – Jan 2026</span>
+      </div>
+      <div class="exp-sub">Lecturer / Computer Science · Kandhkot</div>
+      <ul>
+        <li><i class="fas fa-circle" style="font-size: 0.4rem; align-self: center;"></i> Teach core Computer Science subjects (programming, fundamentals).</li>
+        <li><i class="fas fa-circle" style="font-size: 0.4rem; align-self: center;"></i> Deliver engaging lectures with structured lesson plans.</li>
+        <li><i class="fas fa-circle" style="font-size: 0.4rem; align-self: center;"></i> Evaluate students via quizzes, assignments, and exams.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-card">
+      <div class="edu-detail">
+        <i class="fas fa-university" style="color: var(--accent);"></i>
+        <span><strong>Sukkur IBA University</strong> — B.S. Computer Science, Aug 2022 – May 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS (with GitHub link for House Price Prediction) -->
+  <section id="projects" class="container">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <i class="fas fa-hands project-icon"></i>
+        <h3>SignLink</h3>
+        <span class="tech-tag">Flutter</span>
+        <p>Mobile app for deaf/mute – digital sign interaction.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-chart-line project-icon"></i>
+        <h3>House Price Prediction</h3>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">scikit-learn</span>
+        <p>Supervised learning model with feature selection & evaluation.</p>
+        <!-- GitHub link added professionally -->
+        <a href="https://github.com/Abdul-Qadeerr/ml-project-house-price-prediction" target="_blank" class="github-link"><i class="fab fa-github"></i> View on GitHub</a>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-user-slash project-icon"></i>
+        <h3>Customer Churn</h3>
+        <span class="tech-tag">XGBoost</span>
+        <span class="comming-tag">In Progress</span>
+        <p>Classification pipeline for churn prediction.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-robot project-icon"></i>
+        <h3>NLP Chatbot</h3>
+        <span class="tech-tag">Transformers</span>
+        <span class="comming-tag">Development</span>
+        <p>FAQ bot using HuggingFace models.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-microchip project-icon"></i>
+        <h3>Edge AI</h3>
+        <span class="comming-tag">Planned</span>
+        <p>TinyML experiment on microcontrollers.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-hourglass-half project-icon"></i>
+        <h3>LLM Fine-tuning</h3>
+        <span class="comming-tag">On Bench</span>
+        <p>Instruction tuning for domain-specific tasks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container">
+    <h2 class="section-title">Let's connect</h2>
+    <div class="contact-section">
+      <div>
+        <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Sukkur, Pakistan</div>
+        <div class="contact-item"><i class="fas fa-phone"></i> +92 336 7303005</div>
+        <div class="contact-item"><i class="fas fa-envelope"></i> qadeersys@gmail.com</div>
+        <div class="contact-item"><i class="fab fa-linkedin"></i> linkedin.com/in/aqadeerr</div>
+      </div>
+      <a href="https://linkedin.com/in/aqadeerr" target="_blank" class="contact-linkedin-large"><i class="fab fa-linkedin"></i> Abdul Qadeer · ML</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-note container">
+    Copyright © 2026 Abdul Qadeer. All rights reserved.
+  </div>
+
+  <!-- script.js (theme & smooth) -->
+  <script>
+    (function() {
+      const toggleBtn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const body = document.body;
+
+      // init theme
+      if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        body.classList.remove('dark');
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+
+      toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        if (body.classList.contains('dark')) {
+          icon.classList.replace('fa-moon', 'fa-sun');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          icon.classList.replace('fa-sun', 'fa-moon');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+
+      // smooth scroll
+      document.querySelectorAll('.navbar a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const hash = link.getAttribute('href');
+          if (hash.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(hash);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
